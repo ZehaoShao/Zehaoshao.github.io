@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zehaoshao.github.io</id>
+    <title>wonderSZH</title>
+    <updated>2024-12-30T02:41:03.983Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zehaoshao.github.io"/>
+    <link rel="self" href="https://zehaoshao.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://zehaoshao.github.io/images/avatar.png</logo>
+    <icon>https://zehaoshao.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, wonderSZH</rights>
+    <entry>
+        <title type="html"><![CDATA[HarmonyOS 升级DevEco Studio NEXT 报错]]></title>
+        <id>https://zehaoshao.github.io/post/harmonyos-sheng-ji-deveco-studio-next-bao-cuo/</id>
+        <link href="https://zehaoshao.github.io/post/harmonyos-sheng-ji-deveco-studio-next-bao-cuo/">
+        </link>
+        <updated>2024-11-20T02:02:21.000Z</updated>
+        <content type="html"><![CDATA[<p>/Applications/DevEcoStudioBeta.app/Contents/tools/node/bin/node /Applications/DevEcoStudioBeta.app/Contents/tools/hvigor/bin/hvigorw.js --sync -p product=default --analyze=normal --parallel --incremental --daemon</p>
+<p>*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSCFString _stringByResolvingSymlinksInPathUsingCache:]: unrecognized selector sent to instance 0x600002044000'</p>
+<p>解决方案：<br>
+1、Help 菜单  -&gt; Edit Custom Properitites - &gt; ide.node.location=/usr/local/bin/ (通过which node 查看本地node的bin 路径)<br>
+2、重启 IDE</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[swift 语法]]></title>
+        <id>https://zehaoshao.github.io/post/swift-yu-fa/</id>
+        <link href="https://zehaoshao.github.io/post/swift-yu-fa/">
+        </link>
+        <updated>2024-09-12T02:52:07.000Z</updated>
+        <content type="html"><![CDATA[<p>var greeting = &quot;Hello, playground&quot;</p>
+<p>// ?  标识可选， 一个可选的值是一个具体的值或者是 nil<br>
+// ?? 提供一个默认的值<br>
+var aString :String? = &quot;hell0&quot;<br>
+var bString = aString ?? &quot;123&quot;<br>
+// switch 支持任意类型的数据以及各种比较操作——不仅仅是整数以及测试相等。<br>
+switch bString {<br>
+case &quot;1&quot;: print(&quot;1&quot;)<br>
+case &quot;2&quot; : print(&quot;2&quot;)<br>
+case let x where x.hasPrefix(&quot;123&quot;): print(&quot;123&quot;)<br>
+default:<br>
+print(&quot;AA&quot;)<br>
+}<br>
+// while 来重复运行一段代码直到条件改变。reapte {} where 循环条件也可以在结尾，保证能至少循环一次。<br>
+// 循环中使用 ..&lt; 来表示下标范围; ..&lt; 创建的范围不包含上界，如果想包含的话需要使用 ...</p>
+<p>print(bString)<br>
+// 函数使用它们的参数名称作为它们参数的标签，在参数名称前可以自定义参数标签，或者使用 _ 表示不使用参数标签<br>
+// 函数可以嵌套。被嵌套的函数可以访问外侧函数的变量，你可以使用嵌套函数来重构一个太长或者太复杂的函数<br>
+// 函数是第一等类型，这意味着函数可以作为另一个函数的返回值。<br>
+// 函数也可以当做参数传入另一个函数</p>
+<p>// 函数实际上是一种特殊的闭包:它是一段能之后被调取的代码。闭包中的代码能访问闭包作用域中的变量和函数，即使闭包是在一个不同的作用域被执行的——你已经在嵌套函数的例子中看过了。你可以使用 {} 来创建一个匿名闭包。使用 in 将参数和返回值类型的声明与闭包函数体进行分离。<br>
+var numbers = [1,2,3,4,5,6]<br>
+var arr = numbers.map {(number:Int) -&gt;Int in<br>
+return 3 * number<br>
+}<br>
+// 如果一个闭包的类型已知，比如作为一个代理的回调，你可以忽略参数，返回值，甚至两个都忽略。单个语句闭包会把它语句的值当做结果返回。<br>
+var arr1 = numbers.map{number in 3 * number}<br>
+// 参数位置而不是参数名字来引用参数——这个方法在非常短的闭包中非常有用。当一个闭包作为最后一个参数传给一个函数的时候，它可以直接跟在圆括号后面。当一个闭包是传给函数的唯一参数，你可以完全忽略圆括号。<br>
+var arr2 = numbers.sorted{$0 &gt; $1}<br>
+// 一个构造函数来初始化类实例。使用 init 来创建一个构造器 deinit 创建一个析构函数<br>
+// 子类如果要重写父类的方法的话，需要用 override 标记——如果没有添加 override 就重写父类方法的话编译器会报错。编译器同样会检测 override 标记的方法是否确实在父类中</p>
+<p>// 类 存储属性，还有使用 getter 和 setter 的计算属性<br>
+class Circle {<br>
+var radius:Double = 5.0<br>
+init(radius: Double) {<br>
+self.radius = radius<br>
+}<br>
+var length:Double {<br>
+get {<br>
+return 3 * radius<br>
+}<br>
+set {<br>
+radius = newValue / 3<br>
+}<br>
+}<br>
+}<br>
+// 构造器执行了3步<br>
+//设置子类声明的属性值<br>
+//调用父类的构造器<br>
+//改变父类定义的属性值。其他的工作比如调用方法、getters 和 setters 也可以在这个阶段完成<br>
+class CircleChild:Circle {<br>
+var name:String<br>
+init(name: String, radius:Double) {<br>
+self.name = name<br>
+super.init(radius:radius)<br>
+length = 10<br>
+}<br>
+}</p>
+<p>// 方法、属性和子脚本 后可加 ？，如果 ? 之前的值是 nil，? 后面的东西都会被忽略，并且整个表达式返回 nil。否则，可选值会被解包，之后的所有代码都会按照解包后的值运行。在这两种情况下，整个表达式的值也是一个可选值<br>
+let optionalSquare: CircleChild? = CircleChild(name: &quot;123&quot;, radius: 10.0)</p>
+<p>// 经典<br>
+enum ServerResponse {<br>
+case result(String, String)<br>
+case failure(String)<br>
+}</p>
+<p>let success = ServerResponse.result(&quot;6:00 am&quot;, &quot;8:09 pm&quot;)<br>
+let failure = ServerResponse.failure(&quot;Out of cheese.&quot;)</p>
+<p>switch success {<br>
+case let .result(sunrise, sunset):<br>
+print(&quot;Sunrise is at (sunrise) and sunset is at (sunset)&quot;)<br>
+case let .failure(message):<br>
+print(&quot;Failure...  (message)&quot;)<br>
+}</p>
+<p>// 使用 struct 来创建一个结构体。结构体和类有很多相同的地方，包括方法和构造器。它们之间最大的一个区别就是结构体是传值，类是传引用。<br>
+struct Card {<br>
+var rank: ServerResponse<br>
+var suit: ServerResponse<br>
+func simpleDescription() -&gt; String {<br>
+return &quot;123&quot;<br>
+}<br>
+}<br>
+let card = Card(rank: success, suit: failure)</p>
+<p>// 使用 protocol 来声明一个协议。 类、枚举和结构体都可以遵循协议。<br>
+protocol aProtocol {<br>
+var simpleDescription:String {get}<br>
+mutating func adjust()<br>
+}<br>
+// mutating 关键字用来标记一个会修改结构体的方法<br>
+// 类的声明不需要标记任何方法，因为类中的方法通常可以修改类属性（类的性质）。</p>
+<p>// extension 来为现有的类型添加功能，比如新的方法和计算属性。你可以使用扩展让某个在别处声明的类型来遵守某个协议，这同样适用于从外部库或者框架引入的类型<br>
+extension Int:aProtocol {<br>
+var simpleDescription: String {<br>
+return &quot;the number is (self)&quot;<br>
+}<br>
+mutating func adjust() {<br>
+self += 4<br>
+}<br>
+}</p>
+<p>// 使用 throw 来抛出一个错误和使用 throws 来表示一个可以抛出错误的函数<br>
+// 在 do 代码块中，使用 try 来标记可以抛出错误的代码。在 catch 代码块中，除非你另外命名，否则错误会自动命名为 error</p>
+<p>// 使用 defer 代码块来表示在函数返回前，函数中最后执行的代码。无论函数是否会抛出错误，这段代码都将执行。使用 defer，可以把函数调用之初就要执行的代码和函数调用结束时的扫尾代码写在一起，虽然这两者的执行时机截然不同<br>
+`var fridgeIsOpen = false<br>
+let fridgeContent = [&quot;milk&quot;, &quot;eggs&quot;, &quot;leftovers&quot;]<br>
+func fridgeContains(_ food: String) -&gt; Bool {<br>
+fridgeIsOpen = true<br>
+defer {<br>
+fridgeIsOpen = false<br>
+}</p>
+<pre><code>let result = fridgeContent.contains(food)
+return result
+</code></pre>
+<p>}<br>
+fridgeContains(&quot;milk&quot;)<br>
+print(fridgeIsOpen)`</p>
+<p>// 类型名后面使用 where 来指定对类型的一系列需求，比如，限定类型实现某一个协议，限定两个类型是相同的，或者限定某个类必须有一个特定的父类<br>
+func anyCommonElements&lt;T: Sequence, U: Sequence&gt;(_ lhs: T, _ rhs: U) -&gt; Bool<br>
+where T.Element: Equatable, T.Element == U.Element<br>
+{<br>
+for lhsItem in lhs {<br>
+for rhsItem in rhs {<br>
+if lhsItem == rhsItem {<br>
+return true<br>
+}<br>
+}<br>
+}<br>
+return false<br>
+}<br>
+anyCommonElements([1, 2, 3], [3])</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[HarmonyOS Next]]></title>
+        <id>https://zehaoshao.github.io/post/harmonyos-next/</id>
+        <link href="https://zehaoshao.github.io/post/harmonyos-next/">
+        </link>
+        <updated>2024-09-11T07:58:36.000Z</updated>
+        <content type="html"><![CDATA[<p>开发文档<br>
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/application-dev-guide-V5</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[swift 学习博客]]></title>
+        <id>https://zehaoshao.github.io/post/swift/</id>
+        <link href="https://zehaoshao.github.io/post/swift/">
+        </link>
+        <updated>2024-09-10T02:53:18.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>swiftUI</strong>   https://cloud.tencent.com/developer/article/1511093<br>
+<strong>戴铭的 Swift 小册子 5.0</strong>  https://ming1016.github.io/2021/11/23/daiming-swift-pamphlet/<br>
+<strong>swift编程入门（非常详细）从零基础入门到精通，看完这一篇就够了</strong> https://blog.csdn.net/leah126/article/details/131923047<br>
+**玩转 Xcode Playground（上） 肘子的Swift记事本 **  https://zhuanlan.zhihu.com/p/450174014 **小册子程序本身也是开源的，欢迎  Clone **     https://github.com/ming1016/SwiftPamphletApp<br>
+<strong>swiftUI</strong> https://blog.csdn.net/yuan_050905?type=blog</p>
+<p><strong>swift 编程语言中文教程</strong>  https://swift.bootcss.com   https://goswiftui.com</p>
+<p><strong>swift   开发规范</strong>  https://juejin.cn/post/7129465308376465422<br>
+<strong>swift 开发规范</strong>  https://juejin.cn/post/6979966262591881246</p>
+<p>https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html#//apple_ref/doc/uid/20001282-1001839-BCIEJEHH</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://zehaoshao.github.io/post/hello-gridea/</id>
+        <link href="https://zehaoshao.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
